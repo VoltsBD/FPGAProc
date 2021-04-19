@@ -1,0 +1,66 @@
+//cod your test bench here. 
+//remember to name the dump file as designname.vcd.
+module testobencho();
+//Input
+reg vld;
+reg clk;
+reg rst;
+reg [15:0] mdata;
+reg [7:0] PA;
+wire [7:0] Pcdata;
+wire [7:0] PC;
+wire [7:0] PB;
+
+MARIE uut(
+.vld(vld),
+.clk(clk),
+.rst(rst),
+.mdata(mdata),
+.PA(PA),
+.Pcdata(Pcdata),
+.PC(PC),
+.PB(PB)
+);
+
+initial begin
+    $display("\t\t time,\t vld,\t clk,\t rst,\t mdata, \t Pcdata, \t PC, \t PA, \t PB"); 
+    $monitor("%d, \t%b, \t%b, \t%b, \t%b, \t%b, \t%b, \t%b, \t%b",$time, vld, clk, rst, mdata, Pcdata, PC, PA, PB);  
+    //        $time, vld, clk, rst, mdata, Pcdata, PC, PA, PB
+end
+
+initial begin
+vld=0; clk=0; rst=0; mdata=0;  PA=0; 
+#50 clk=1;
+#50 clk=0;
+#50 clk = 1;
+#50 clk = 0;
+#15 rst=1; 
+#50 clk=1;
+#50 clk=0;
+#15 rst=0;
+#50 clk=1;
+#100 PA=8'b11110101; clk=1;
+#100 clk=0;
+#200 clk=1; mdata=16'b0000100100010010;
+#50 clk=0;
+#50 clk = 1; 
+#50 clk=0;
+#50 clk = 1; mdata=16'b0000100100010011;
+#50 clk=0;
+#50 clk = 1; 
+#50 clk=0;
+#50 clk = 1; mdata=16'b0110100100010001;
+#50 clk=0;
+#50 clk = 1; 
+#50 clk=0;
+#50 clk = 1; mdata=16'b0110100100010011;
+#50 clk=0;
+#50 clk = 1; 
+#50 clk=0;
+end
+
+ initial begin 
+   $dumpfile("marie_4bit.vcd");  $dumpvars; 
+  end 
+
+endmodule
