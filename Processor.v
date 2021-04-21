@@ -1,0 +1,2 @@
+//Processor`timescale 1ns / 1psmodule processor(input wire vld,input wire clk,input wire rst,//input wire [15:0] mdata,input wire [7:0] PA,//output reg [7:0] Pcdata,//output reg [7:0] PC,output [7:0] PB,output CS//output reg OE    );    wire [15:0] mdata;    wire [7:0] Pcdata;
+    wire [7:0] PC;    //wire [7:0] PB;    wire OE;    MARIE1p8 U1 (vld, clk, rst, mdata, PA, Pcdata, PC, PB, CS, OE);    ROM U2 (PC, clk, OE, mdata);endmodule
