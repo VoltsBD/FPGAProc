@@ -163,7 +163,7 @@ always@(posedge clk)
 			end		
 		else			
 			begin		
-				datatemp=15'hFFFF;	
+				datatemp=16'hFFFF;	
 			end		
 	end				
 					
